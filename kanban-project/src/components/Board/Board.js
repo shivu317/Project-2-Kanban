@@ -17,15 +17,12 @@ export default function Board() {
         <div className='board_cards custom-scroll'>
             <Card/>
             <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
             
-            <Editable/>
+            <Editable
+                displayClass="board_cards_add"
+                text="Add Card"
+                placeholder="Enter Card Title"
+            />
         </div>
     </div>
   )
