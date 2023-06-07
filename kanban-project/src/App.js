@@ -1,8 +1,6 @@
-
 import './App.css'
-// import Board from './components/Board/Board'
 import Board from './Components/Board/Board';
-
+import Editable from './Components/Editable/Editable';
 
 function App() {
   return (
@@ -15,6 +13,13 @@ function App() {
           <div className="app_boards">
             <Board/>
             <Board/>
+            <div className="app_boards_board">
+            <Editable 
+            displayClass="app_boards_board_add"
+            text="Add Board"
+            placeholder="Enter board title"
+            />
+            </div>
           </div>
         </div>
       </div>
@@ -22,4 +27,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
