@@ -13,7 +13,7 @@ import Dropdown from '../Dropdown/Dropdown';
     <div className='board'>
         <div className='board_top'>
             <p className='board_top_title'>
-            To Do <span> 2 </span>
+            To Do <span>2</span>
             </p>
             
             <div className="board_top_more" onClick={()=>
@@ -45,5 +45,4 @@ import Dropdown from '../Dropdown/Dropdown';
   );
 }
 export default Board;
-
 
