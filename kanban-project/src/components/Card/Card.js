@@ -5,24 +5,25 @@ import { CheckSquare, Clock, MoreHorizontal } from 'react-feather';
 import Chip from '../Chip/Chip';
 import Dropdown from '../Dropdown/Dropdown';
 
-export default function Card() {
+export default function Card(props) {
     const [showDropdown,setShowDropdown]=useState(false)
   return (
     <div className='card'>
         <div className='card_top'>
             <div className='card_top_labels'>
-                <Chip text="Frontend" color="green"/>
-                 <Chip close text="Frontend" color="green"/> 
+              
+                {props.card?.labels?.map((item,index) => (<Chip key={index} text={item.text} color={item.color}  />))}
+              
             </div>
-            <MoreHorizontal/>
+            
             <div className="card_top_more" onClick={()=>
               setShowDropdown(true)}>
-            
+            <MoreHorizontal/>
             
               {showDropdown && (
             <Dropdown 
             onClose={()=>setShowDropdown(false)} >
-              <div className="board_dropdown">
+              <div className="card_dropdown">
               <p>Delete Card</p>
               </div>
             </Dropdown>
@@ -30,14 +31,21 @@ export default function Card() {
         </div> 
         </div>
         <div className='card_title'>
-            kkkk
+            {props.card?.title}
         </div>
         <div className='card_footer'>
-            <p><Clock/>6 June</p>
-            <p><CheckSquare/>1/4</p>
+          {props.card?.date && (
+            <p>
+              <Clock/>
+              {props.card?.date}
+            </p>
+            )}
+            <p><CheckSquare/>
+            1/4
+            </p>
         </div>
     </div>
-  )
+  );
 }
 
 

@@ -6,14 +6,14 @@ import Editable from '../Editable/Editable';
 import Dropdown from '../Dropdown/Dropdown';
 
 
- function Board() {
+ function Board(props) {
 
   const [showDropdown,setShowDropdown]=useState(false)
   return (
     <div className='board'>
         <div className='board_top'>
             <p className='board_top_title'>
-            To Do <span>2</span>
+            {props.board?.title} <span>{` ${props.board?.cards?.length}`}</span>
             </p>
             
             <div className="board_top_more" onClick={()=>
@@ -22,7 +22,7 @@ import Dropdown from '../Dropdown/Dropdown';
             
               {showDropdown && (
             <Dropdown 
-            onClose={()=>setShowDropdown(false)} >
+            onClose={()=> setShowDropdown(false)} >
               <div className="board_dropdown">
               <p>Delete Board</p>
               </div>
@@ -31,8 +31,12 @@ import Dropdown from '../Dropdown/Dropdown';
         </div>
         </div>
         <div className='board_cards custom-scroll'>
-            <Card/>
-            <Card/>
+          {
+            props.board?.cards?.map((item)=>(
+              <Card key={item.id} card={item}/>
+            ))
+          }
+          
             
             <Editable
                 displayClass="board_cards_add"
