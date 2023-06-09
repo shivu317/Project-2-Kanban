@@ -24,7 +24,9 @@ export default function Card(props) {
             <Dropdown 
             onClose={()=>setShowDropdown(false)} >
               <div className="card_dropdown">
-              <p>Delete Card</p>
+              <p onClick={()=>props.removeCard(
+                props.card?.id, props.boardId)
+                }>Delete Card</p>
               </div>
             </Dropdown>
               )}

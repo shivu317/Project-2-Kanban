@@ -24,7 +24,7 @@ import Dropdown from '../Dropdown/Dropdown';
             <Dropdown 
             onClose={()=> setShowDropdown(false)} >
               <div className="board_dropdown">
-              <p>Delete Board</p>
+              <p onClick={()=>props.removeBoard(props.board?.id)}>Delete Board</p>
               </div>
             </Dropdown>
               )}
@@ -33,7 +33,10 @@ import Dropdown from '../Dropdown/Dropdown';
         <div className='board_cards custom-scroll'>
           {
             props.board?.cards?.map((item)=>(
-              <Card key={item.id} card={item}/>
+              <Card key={item.id} card={item}
+                removeCard={props.removeCard}
+                boardId={props.board?.id}
+              />
             ))
           }
           
@@ -42,6 +45,7 @@ import Dropdown from '../Dropdown/Dropdown';
                 displayClass="board_cards_add"
                 text="Add Card"
                 placeholder="Enter Card Title"
+                onSubmit={(value)=>props.addCard(value, props.board?.id)}
             />
         </div>
     </div>
