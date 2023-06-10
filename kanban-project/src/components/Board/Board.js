@@ -36,6 +36,8 @@ import Dropdown from '../Dropdown/Dropdown';
               <Card key={item.id} card={item}
                 removeCard={props.removeCard}
                 boardId={props.board?.id}
+                handleDragEnd={props.handleDragEnd}
+                handleDragEnter={props.handleDragEnter}
               />
             ))
           }
