@@ -8,7 +8,10 @@ import Dropdown from '../Dropdown/Dropdown';
 export default function Card(props) {
     const [showDropdown,setShowDropdown]=useState(false)
   return (
-    <div className='card'>
+    <div className='card' draggable
+    onDragEnd={()=>props.handleDragEnd(props.card?.id, props.boardId)}
+    onDragEnter={()=>props.handleDragEnter(props.card?.id, props.boardId)}
+    >
         <div className='card_top'>
             <div className='card_top_labels'>
               

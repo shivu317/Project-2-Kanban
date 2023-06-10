@@ -35,8 +35,10 @@ function App() {
     },
   ]);
 
-
-  
+  const [target, setTarget] = useState({
+    cid:"",
+    bid:""
+  })
 
   const addCard=(title, bid)=>{
     const card={
@@ -47,6 +49,8 @@ function App() {
       date:"",
       desc:"",
     };
+
+    
 
     const index=boards.findIndex((item)=>item.id===bid)
     if(index<0) return 
@@ -86,7 +90,39 @@ function App() {
 
   }
   
+
+  const handleDragEnter=(cid, bid)=>{
+    setTarget({
+      cid,
+      bid
+    })
+  }
     
+  const handleDragEnd=(cid, bid)=>{
+    let s_bIndex, s_cIndex, t_cIndex, t_bIndex
+
+    s_bIndex=boards.findIndex((item)=>item.id === bid)
+    if(s_bIndex<0) return 
+
+    s_cIndex=boards[s_bIndex].cards?.findIndex((item)=>item.id === cid)
+    if(s_cIndex < 0) return 
+
+    t_bIndex=boards.findIndex((item)=>item.id === target.bid)
+    if(t_bIndex<0) return 
+
+    t_cIndex=boards[t_bIndex].cards?.findIndex((item)=>item.id === target.cid)
+    if(t_cIndex<0) return 
+
+    const tempboards=[...boards]
+    const tempCard = tempboards[s_bIndex].cards[s_cIndex]
+
+    tempboards[s_bIndex].cards.splice(s_cIndex, 1)
+    tempboards[t_bIndex].cards.splice(t_cIndex,0,tempCard)
+
+    setboards(tempboards)
+
+  }
+
   return (
     <>
       <div className="app">
@@ -101,6 +137,8 @@ function App() {
               removeBoard={removeBoard}
               addCard={addCard}
               removeCard={removeCard}
+              handleDragEnd={handleDragEnd}
+              handleDragEnter={handleDragEnter}
                /> 
               ))}
             
