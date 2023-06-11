@@ -13,10 +13,12 @@ function App() {
           id:Date.now()+Math.random(),
           title:"Card 1",
           tasks:[],
-          labels:[{
+          labels:[
+            {
             text:"frontend",
-            color:"blue"
-          }],
+            color:"blue",
+          },
+        ],
           desc:"dfhdh ghj",
           date:"",
         },
