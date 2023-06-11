@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { X } from 'react-feather'
-import './Editable.css'
+import React, { useState } from 'react';
+import { X } from 'react-feather';
+import './Editable.css';
 
 export default function Editable(props) {
 
@@ -16,8 +16,10 @@ export default function Editable(props) {
             if(props.onSubmit)props.onSubmit()
         }}
         >
-            <input type='text'
-             placeholder={props.placeholder || "Enter item"} 
+            <input 
+            autoFocus
+            type='text'
+            placeholder={props.placeholder || "Enter item"} 
              defaultValue={props.text}
 
              />

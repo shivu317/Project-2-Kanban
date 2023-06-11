@@ -1,21 +1,40 @@
-.board{
-    min-width: 20rem;
+/* .board {
+    min-width: 290px;
+    width: 290px;
     max-height: 100%;
+    flex-basis: 290px;
     display: flex;
-    height: 100%;
     flex-direction: column;
-    gap:20px;
-}
-
-.board_top{
+    gap: 20px;
+  }
+  
+  .board_header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+.board_top_more{
+    position:relative;
+    cursor: pointer;
+}
+.board_dropdown{
+    background-color: #fff;
+    width:130px;
+    padding:10px;
+    border-radius:3px;
+    box-shadow:1px 0 20px rgba(0,0,0,0.5);
+}
+.board_dropdown p{
+    cursor:pointer;
 }
 
 .board_top_title{
-    flex:1;
+     flex:1;
     display: flex;
     align-items: center;
-    font-weight: bold;
+    font-weight: bold; 
+    
 }
 
 .board_top_title span{
@@ -23,14 +42,12 @@
 }
 
 .board_cards{
-    background-color: rgb(223, 219, 219);
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
     display: flex;
-    flex:1;
     flex-direction: column;
-    gap:10px;
-    padding:10px;
-    border-bottom: 10px;
-    height: 100%;
+    gap: 10px;
     overflow-y: auto;
 }
 
@@ -43,4 +60,77 @@
 .board_cards_add:hover{
     box-shadow: 1px 2px 0 1px #ccc;
     
-}
+} */
+ 
+ .board {
+    background-color: #f2f2f2;
+    border-radius: 4px;
+    padding: 10px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .board_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .board_top_title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .board_top_title span {
+    font-weight: normal;
+  }
+  
+  .board_top_more {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .board_dropdown {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+  }
+  
+  .board_cards {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 10px;
+    min-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .board_cards_add {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #f2f2f2;
+    margin-top: 10px;
+  }
+  
+  .custom-scroll {
+    overflow-y: scroll;
+    scrollbar-width: thin;
+  }
+  
+  .custom-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .custom-scroll::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+  }
+  
+  .custom-scroll::-webkit-scrollbar-track {
+    background-color: #f2f2f2;
+  }
+   
