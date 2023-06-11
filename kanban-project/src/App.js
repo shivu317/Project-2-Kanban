@@ -35,6 +35,8 @@ function App() {
     },
   ]);
 
+  const [target,setTarget]=useState({cid:"",bid:""})
+
 
   
 
@@ -62,13 +64,18 @@ function App() {
     const bIndex = boards.findIndex((item) => item.id === bid);
     if (bIndex < 0) return;
 
-    const cIndex=boards[bIndex].cards.findIndex((item)=>item.id===bid)
+    const cIndex=boards[bIndex].cards.findIndex((item)=>item.id===cid)
     if(cIndex<0) return 
 
     const tempBoards=[...boards]
     tempBoards[bIndex].cards.splice(cIndex, 1)
     setboards(tempBoards)
   };
+
+ 
+  
+  
+  
 
 
   const addBoard=(title)=>{
@@ -86,7 +93,35 @@ function App() {
 
   }
   
-    
+  const handleDragEnter=(cid,bid)=>{
+    setTarget({
+      cid,
+      bid,
+    })
+  }
+  const handleDragEnd=(cid,bid)=>{
+      let s_bIndex,s_cIndex,t_bIndex,t_cIndex
+
+      s_bIndex=boards.findIndex(item=>item.id===bid)
+      if(s_bIndex<0) return
+
+      s_cIndex=boards[s_bIndex].cards?.findIndex(item=>item.id===cid)
+      if(s_cIndex<0) return
+
+      t_bIndex=boards.findIndex(item=>item.id===target.bid)
+      if(t_bIndex<0) return
+
+      t_cIndex=boards[t_bIndex].cards?.findIndex(item=>item.id===target.cid)
+      if(t_cIndex<0) return
+
+      const tempBoards=[...boards]
+      const tempCard=tempBoards[s_bIndex].cards[s_cIndex]
+
+      tempBoards[s_bIndex].cards.splice(s_cIndex,1)
+      tempBoards[t_bIndex].cards.splice(t_cIndex,0,tempCard)
+
+      setboards(tempBoards)
+  }
   return (
     <>
       <div className="app">
@@ -101,6 +136,8 @@ function App() {
               removeBoard={removeBoard}
               addCard={addCard}
               removeCard={removeCard}
+              handleDragEnd={handleDragEnd}
+              handleDragEnter={handleDragEnter}
                /> 
               ))}
             
@@ -120,3 +157,5 @@ function App() {
 }
 
 export default App;
+
+
