@@ -126,6 +126,18 @@ function App() {
 
   }
   
+  const updateCard=(cid, bid, card)=>{
+    const bIndex = boards.findIndex((item) => item.id === bid);
+    if (bIndex < 0) return;
+
+    const cIndex=boards[bIndex].cards.findIndex((item)=>item.id===cid)
+    if(cIndex<0) return 
+
+    const tempBoards=[...boards]
+    tempBoards[bid].cards[cid]=card
+    setboards(tempBoards)
+
+  }
   
   return (
     <>
@@ -143,6 +155,7 @@ function App() {
               removeCard={removeCard}
               handleDragEnd={handleDragEnd}
               handleDragEnter={handleDragEnter}
+              updateCard={updateCard}
                /> 
               ))}
             
