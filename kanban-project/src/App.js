@@ -37,10 +37,14 @@ function App() {
     },
   ]);
 
-  const [target,setTarget]=useState({cid:"",bid:""})
-
 
   
+
+  const [target, setTarget] = useState({
+    cid:"",
+    bid:""
+  })
+
 
   const addCard=(title, bid)=>{
     const card={
@@ -52,6 +56,8 @@ function App() {
       desc:"",
     };
 
+    
+
     const index=boards.findIndex((item)=>item.id===bid)
     if(index<0) return 
 
@@ -60,8 +66,7 @@ function App() {
     setboards(tempBoards)
 
   }
-
-
+  
   const removeCard = (bid, cid) => {
     const bIndex = boards.findIndex((item) => item.id === bid);
     if (bIndex < 0) return;
@@ -73,13 +78,7 @@ function App() {
     tempBoards[bIndex].cards.splice(cIndex, 1)
     setboards(tempBoards)
   };
-
- 
   
-  
-  
-
-
   const addBoard=(title)=>{
     setboards([...boards,{
       id:Date.now()+Math.random(),
@@ -94,36 +93,40 @@ function App() {
     setboards(tempBoards)
 
   }
-  
-  const handleDragEnter=(cid,bid)=>{
+
+  const handleDragEnter=(cid, bid)=>{
     setTarget({
       cid,
-      bid,
+      bid
     })
   }
-  const handleDragEnd=(cid,bid)=>{
-      let s_bIndex,s_cIndex,t_bIndex,t_cIndex
+    
+  const handleDragEnd=(cid, bid)=>{
+    let s_bIndex, s_cIndex, t_cIndex, t_bIndex
 
-      s_bIndex=boards.findIndex(item=>item.id===bid)
-      if(s_bIndex<0) return
+    s_bIndex=boards.findIndex((item)=>item.id === bid)
+    if(s_bIndex<0) return 
 
-      s_cIndex=boards[s_bIndex].cards?.findIndex(item=>item.id===cid)
-      if(s_cIndex<0) return
+    s_cIndex=boards[s_bIndex].cards?.findIndex((item)=>item.id === cid)
+    if(s_cIndex < 0) return 
 
-      t_bIndex=boards.findIndex(item=>item.id===target.bid)
-      if(t_bIndex<0) return
+    t_bIndex=boards.findIndex((item)=>item.id === target.bid)
+    if(t_bIndex<0) return 
 
-      t_cIndex=boards[t_bIndex].cards?.findIndex(item=>item.id===target.cid)
-      if(t_cIndex<0) return
+    t_cIndex=boards[t_bIndex].cards?.findIndex((item)=>item.id === target.cid)
+    if(t_cIndex<0) return 
 
-      const tempBoards=[...boards]
-      const tempCard=tempBoards[s_bIndex].cards[s_cIndex]
+    const tempboards=[...boards]
+    const tempCard = tempboards[s_bIndex].cards[s_cIndex]
 
-      tempBoards[s_bIndex].cards.splice(s_cIndex,1)
-      tempBoards[t_bIndex].cards.splice(t_cIndex,0,tempCard)
+    tempboards[s_bIndex].cards.splice(s_cIndex, 1)
+    tempboards[t_bIndex].cards.splice(t_cIndex,0,tempCard)
 
-      setboards(tempBoards)
+    setboards(tempboards)
+
   }
+  
+  
   return (
     <>
       <div className="app">

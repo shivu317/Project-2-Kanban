@@ -8,6 +8,8 @@ export default function Card(props) {
     const [showDropdown,setShowDropdown]=useState(false)
     const [showmodal,setShowModal]=useState(false)
     const {id}=props.card
+    
+    
   return (
     <>
     {
@@ -17,9 +19,7 @@ export default function Card(props) {
     onDragEnd={()=>props.handleDragEnd(props.card?.id,props.boardId)}
     onDragEnter={()=>props.handleDragEnter(props.card?.id,props.boardId)}
     onClick={()=>setShowModal(true)}
-    >
-
-
+    
         <div className='card_top'>
             <div className='card_top_labels'>
               
