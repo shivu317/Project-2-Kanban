@@ -7,6 +7,7 @@ function Dropdown (props) {
         if(dropdownRef && !dropdownRef?.current?.contains
             (event?.target)) {
                 if(props.onClose) props.onClose();
+               
             }
            
        

@@ -13,10 +13,12 @@ function App() {
           id:Date.now()+Math.random(),
           title:"Card 1",
           tasks:[],
-          labels:[{
+          labels:[
+            {
             text:"frontend",
-            color:"blue"
-          }],
+            color:"blue",
+          },
+        ],
           desc:"dfhdh ghj",
           date:"",
         },
@@ -35,10 +37,14 @@ function App() {
     },
   ]);
 
+
+  
+
   const [target, setTarget] = useState({
     cid:"",
     bid:""
   })
+
 
   const addCard=(title, bid)=>{
     const card={
@@ -60,21 +66,19 @@ function App() {
     setboards(tempBoards)
 
   }
-
-
+  
   const removeCard = (bid, cid) => {
     const bIndex = boards.findIndex((item) => item.id === bid);
     if (bIndex < 0) return;
 
-    const cIndex=boards[bIndex].cards.findIndex((item)=>item.id===bid)
+    const cIndex=boards[bIndex].cards.findIndex((item)=>item.id===cid)
     if(cIndex<0) return 
 
     const tempBoards=[...boards]
     tempBoards[bIndex].cards.splice(cIndex, 1)
     setboards(tempBoards)
   };
-
-
+  
   const addBoard=(title)=>{
     setboards([...boards,{
       id:Date.now()+Math.random(),
@@ -89,7 +93,6 @@ function App() {
     setboards(tempBoards)
 
   }
-  
 
   const handleDragEnter=(cid, bid)=>{
     setTarget({
@@ -122,7 +125,8 @@ function App() {
     setboards(tempboards)
 
   }
-
+  
+  
   return (
     <>
       <div className="app">
@@ -158,3 +162,5 @@ function App() {
 }
 
 export default App;
+
+
