@@ -1,53 +1,53 @@
-import React, { useState } from 'react';
-import { X } from 'react-feather';
-import './Editable.css';
+import React, { useState } from "react";
 
-export default function Editable(props) {
+import { X } from "react-feather";
 
-    const [showEdit, setShowEdit] = useState(false)
-    const [inputValue, setInputValue] = useState(props.text || "");
+import "./Editable.css";
 
+function Editable(props) {
+  const [isEditable, setIsEditable] = useState(false);
+  const [inputText, setInputText] = useState(props.defaultValue || "");
+
+  const submission = (e) => {
+    e.preventDefault();
+    if (inputText && props.onSubmit) {
+      setInputText("");
+      props.onSubmit(inputText);
+    }
+    setIsEditable(false);
+  };
 
   return (
-    <div className='editable'>
-
-        {
-            showEdit ? 
-            <form className={`editable_edit ${props.editCase || "" }`}
-        onSubmit={(e)=>{
-            e.preventDefault()
-            if(props.onSubmit)props.onSubmit(inputValue)
-            setShowEdit(false)
-            setInputValue("")
-        }}
+    <div className="editable">
+      {isEditable ? (
+        <form
+          className={`editable_edit ${props.editClass ? props.editClass : ""}`}
+          onSubmit={submission}
         >
-            <input 
+          <input
+            type="text"
+            value={inputText}
+            placeholder={props.placeholder || props.text}
+            onChange={(event) => setInputText(event.target.value)}
             autoFocus
-            type='text'
-            value={inputValue}
-            onChange={(e)=>setInputValue(e.target.value)}
-            placeholder={props.placeholder || "Enter item"} 
-
-
-             />
-            <div className='editable_edit_footer'>
-                <button type='submit'>
-                    {props.buttonText || "Add"}
-                </button>
-                <X onClick={()=>setShowEdit(false)}/>
-            </div>
+          />
+          <div className="editable_edit_footer">
+            <button type="submit">{props.buttonText || "Add"}</button>
+            <X onClick={() => setIsEditable(false)} className="closeIcon" />
+          </div>
         </form>
-        :(
-        <p className={`editable_display ${props.displayClass || ""}`} 
-        onClick={()=>setShowEdit(true)}>{props.text || "Add item"}</p>
-        )
-        }
-       
+      ) : (
+        <p
+          className={`editable_display ${
+            props.displayClass ? props.displayClass : ""
+          }`}
+          onClick={() => setIsEditable(true)}
+        >
+          {props.text}
+        </p>
+      )}
     </div>
-  )
+  );
 }
 
-
-
-
-
+export default Editable;
